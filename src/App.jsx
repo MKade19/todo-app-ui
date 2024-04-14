@@ -5,6 +5,8 @@ import Layout from './Layout/Layout';
 import SignInPage from './Pages/SignInPage';
 import HomePage from './Pages/HomePage';
 import AuthContext from './AuthContext';
+import EmployeesPage from './Pages/EmployeesPage';
+import SpecialitiesPage from './Pages/SpecialitiesPage';
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -14,6 +16,8 @@ function App() {
             <Routes>
                 <Route path="/" element={ user() ? <Layout/> : <Navigate to={'/auth/sign-in'}/> }>
                     <Route index element={ <HomePage/> }/>
+                    <Route path='/specialities' element={ <SpecialitiesPage/> }/>
+                    <Route path='/employees' element={ <EmployeesPage/> }/>
                     <Route path='*' element={ <Navigate to={'/'}/> }/>
                 </Route>
                 <Route path='/auth' element={ !user() ? null : <Navigate to={'/'}/> }>
