@@ -77,6 +77,34 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const changePassword = async (username, oldPassword, password) => {
+        const response = await AuthDataService.changePassword(username, oldPassword, password);
+
+        if(response.status === 200){
+            Swal.fire({
+                title: "You have changed a password successfully",
+                icon: "success",
+                toast: true,
+                timer: 3000,
+                position: 'top-right',
+                timerProgressBar: true,
+                showConfirmButton: false,
+            })
+
+            navigate("/auth/sign-in");
+        } else {
+            Swal.fire({
+                title: "Error occured. Please verify given data.",
+                icon: "error",
+                toast: true,
+                timer: 3000,
+                position: 'top-right',
+                timerProgressBar: true,
+                showConfirmButton: false,
+            })
+        }
+    }
+
     const logoutUser = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("user");
@@ -97,6 +125,7 @@ export const AuthProvider = ({ children }) => {
         accessToken,
         loginUser,
         registerUser,
+        changePassword,
         logoutUser,
     }
 
