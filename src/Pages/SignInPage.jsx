@@ -11,6 +11,9 @@ const SignInPage = () => {
         <div className="d-flex flex-column justify-content-center align-items-center">
             <h1 className="my-4">Sign in</h1>
             <SignInForm/>
+            <LinkContainer to={'/auth/change-password'}>
+                <button className="btn btn-link">Change password</button>
+            </LinkContainer>
         </div>
     )
 }

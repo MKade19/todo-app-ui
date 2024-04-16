@@ -1,8 +1,10 @@
+import NavigationBar from "../UI/NavigationBar";
+
 const Header = () => {
     return (
-        <div>
-            
-        </div>
+        <header className="mb-3">
+            <NavigationBar/>
+        </header>
     )
 }
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://127.0.0.1:8000/';
+const BASE_URL = 'https://localhost:8000/api/to-do-app/';
 
 const instance = axios.create({
     baseURL: BASE_URL,
