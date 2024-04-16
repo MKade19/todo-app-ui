@@ -26,7 +26,7 @@ const NavigationBar = () => {
                             <NavLink>Specialities</NavLink>
                         </LinkContainer>
                     </Nav>
-                    <Navbar>{ !user() ? '' : user().username }&nbsp;&nbsp;&nbsp;
+                    <Navbar>{ !user() ? '' : user().username + '-' + user().role.name }&nbsp;&nbsp;&nbsp;
                     { !user ? null : <NavLink onClick={handleLogout}>Log out</NavLink> }</Navbar>
                 </Navbar.Collapse>
             </Container>

@@ -31,7 +31,8 @@ class EmployeeDataService {
             employmentDate: employee.employmentDate,
             age: employee.age,
             roleId: employee.role.id,
-            specialityId: employee.speciality.id
+            specialityId: employee.speciality.id,
+            password: employee.password
         }
 
         return await axios.put(`employees`, body);

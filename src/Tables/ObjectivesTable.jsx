@@ -1,12 +1,12 @@
 import Table from 'react-bootstrap/Table';
-import EmployeeDataService from '../Services/EmployeeDataService';
+import ObjectiveDataService from '../Services/ObjectiveDataService';
 import Swal from "sweetalert2";
 
-const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fetchData }) => {
+const ObjectivesTable = ({ handleOpenForm, objectives, fetchData }) => {
     const deleteHandler = async (id, event) => {
         Swal.fire({
             title: "Please confirm",
-            text: 'Are you sure, to delete the employee?',
+            text: 'Are you sure, to delete the objective?',
             showDenyButton: true,
             confirmButtonText: 'Yes',
             denyButtonText: 'No',
@@ -20,7 +20,7 @@ const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fe
         }).then(async (result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Employee has been deleted",
+                    title: "Objective has been deleted",
                     icon: "success",
                     toast: true,
                     timer: 1000,
@@ -28,7 +28,7 @@ const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fe
                     timerProgressBar: true,
                     showConfirmButton: false,
                 });
-                await EmployeeDataService.deleteById(id);
+                await ObjectiveDataService.deleteById(id);
                 await fetchData();
             } else if (result.isDenied) {
                 return;
@@ -37,30 +37,24 @@ const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fe
     }
 
     const addRows = () => {
-        return employees.map(a => createRow(a));
+        return objectives.map(a => createRow(a));
     }
  
-    const createRow = employee => {
+    const createRow = objective => {
         return (
-            <tr key={employee.id}>
-                <td>{employee.fullname}</td>
-                <td>{employee.username}</td>
-                <td>{new Date(employee.employmentDate).toLocaleDateString()}</td>
-                <td>{employee.age}</td>
-                <td>{employee.role.name}</td>
-                <td>{employee.speciality.title}</td>
+            <tr key={objective.id}>
+                <td>{objective.title}</td>
+                <td>{objective.desciption}</td>
+                <td><input className='form-check-input' readOnly type="checkbox" checked={objective.isCompleted}/></td>
+                <td>{new Date(objective.createdDate).toLocaleDateString()}</td>
+                <td>{new Date(objective.updatedDate).toLocaleDateString()}</td>
                 <td>
-                    <button className='btn btn-outline-primary' onClick={ event => { handleOpenObjectiveModal(employee.id, event) } }>
-                        ...
-                    </button>
-                </td>
-                <td>
-                    <button className='btn btn-outline-primary' onClick={ event => { handleOpenForm(employee.id, event) } }>
+                    <button className='btn btn-outline-primary' onClick={ event => { handleOpenForm(objective.id, event) } }>
                         <i className="bi bi-pen"></i>
                     </button>
                 </td>
                 <td>
-                    <button className='btn btn-outline-danger' onClick={ event => { deleteHandler(employee.id, event) } }>
+                    <button className='btn btn-outline-danger' onClick={ event => { deleteHandler(objective.id, event) } }>
                         <i className="bi bi-trash"></i>
                     </button>
                 </td>
@@ -73,13 +67,11 @@ const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fe
             <Table hover striped bordered>
                 <thead>
                     <tr>
-                        <th>Fullname</th>
-                        <th>Username</th>
-                        <th>Employment date</th>
-                        <th>Age</th>
-                        <th>Role</th>
-                        <th>Speciality</th>
-                        <th>Objectives</th>
+                        <th>Title</th>
+                        <th>Desciption</th>
+                        <th>Is objective<br/>completed?</th>
+                        <th>Created date</th>
+                        <th>Updated date</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -92,4 +84,4 @@ const EmployeeTable = ({ handleOpenForm, handleOpenObjectiveModal, employees, fe
     )
 }
 
-export default EmployeeTable;
+export default ObjectivesTable;

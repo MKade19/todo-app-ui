@@ -88,7 +88,8 @@ const EmployeeEditForm = ({ employeeId, handleClose, fetchData }) => {
                     employmentDate: employmentDate,
                     age: age,
                     role: activeRole, 
-                    speciality: activeSpeciality 
+                    speciality: activeSpeciality,
+                    password: password
                 });
                 Swal.fire({
                     title: "Employee has been updated",

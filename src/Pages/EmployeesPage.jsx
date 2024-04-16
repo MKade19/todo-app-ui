@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import EmployeeTable from "../Tables/EmployeeTable";
 import EmployeeDataService from "../Services/EmployeeDataService";
 import EmployeeEditModal from "../Modals/EmployeeEditModal";
+import EmployeeObjectivesModal from "../Modals/EmployeeObjectivesModal";
 
 const EmployeesPage = () => {
     const [editFormOpened, setEditFormOpened] = useState(false);
     const [employeeId, setEmployeeId] = useState(null);
     const [employees, setEmployees] = useState([]);
+    const [objectiveModalOpened, setObjectiveModalOpened] = useState(false);
 
     const handleOpenForm = (id, event) => {
         setEmployeeId(id);
@@ -15,6 +17,15 @@ const EmployeesPage = () => {
 
     const handleCloseForm = event => {
         setEditFormOpened(false);
+    }
+
+    const handleOpenObjectiveModal = (id, event) => {
+        setEmployeeId(id);
+        setObjectiveModalOpened(true);
+    }
+
+    const handleCloseObjectiveModal= event => {
+        setObjectiveModalOpened(false);
     }
 
     const fetchData = async () => {
@@ -38,6 +49,7 @@ const EmployeesPage = () => {
             <EmployeeTable 
                 employees={ employees } 
                 handleOpenForm={ handleOpenForm } 
+                handleOpenObjectiveModal={ handleOpenObjectiveModal }
                 fetchData={ fetchData }
             />
             <EmployeeEditModal 
@@ -45,6 +57,11 @@ const EmployeesPage = () => {
                 showModal={ editFormOpened } 
                 handleClose={ handleCloseForm }
                 fetchData={ fetchData }
+            />
+            <EmployeeObjectivesModal
+                employeeId={ employeeId }
+                showModal={ objectiveModalOpened }
+                handleClose={ handleCloseObjectiveModal }
             />
         </div>
     )
