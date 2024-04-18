@@ -19,12 +19,18 @@ const NavigationBar = () => {
                         <LinkContainer to={"/"}>
                             <NavLink>Your tasks</NavLink>
                         </LinkContainer>
-                        <LinkContainer  to={"/employees"}>
-                            <NavLink>Emloyees</NavLink>
-                        </LinkContainer>
-                        <LinkContainer  to={"/specialities"}>
-                            <NavLink>Specialities</NavLink>
-                        </LinkContainer>
+                        {
+                            !user().role.employeesPermission ? null :
+                            <LinkContainer to={"/employees"}>
+                                <NavLink>Emloyees</NavLink>
+                            </LinkContainer>
+                        } 
+                        {
+                            !user().role.specialitiesPermission ? null :
+                            <LinkContainer to={"/specialities"}>
+                                <NavLink>Specialities</NavLink>
+                            </LinkContainer>
+                        }
                     </Nav>
                     <Navbar>{ !user() ? '' : user().username + '-' + user().role.name }&nbsp;&nbsp;&nbsp;
                     { !user ? null : <NavLink onClick={handleLogout}>Log out</NavLink> }</Navbar>
