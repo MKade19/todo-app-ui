@@ -180,7 +180,13 @@ const EmployeeEditForm = ({ employeeId, handleClose, fetchData }) => {
                     </div>
                     <div className="flex-row align-items-center my-3">
                         <label className="mx-3" htmlFor="passwordInput">Password</label>
-                        <input className="form-control" placeholder="Enter password" required type="password" id="passwordInput" value={password} onChange={changePassword}/>
+                        <input className="form-control" 
+                            placeholder="Enter password" 
+                            required={ !employeeId } 
+                            type="password" 
+                            id="passwordInput" 
+                            value={ password } 
+                            onChange={ changePassword }/>
                     </div>
                     <div className="d-flex justify-content-end">
                         <button type="submit" className="btn btn-primary mt-4">Submit</button>

@@ -3,6 +3,7 @@ import EmployeeTable from "../Tables/EmployeeTable";
 import EmployeeDataService from "../Services/EmployeeDataService";
 import EmployeeEditModal from "../Modals/EmployeeEditModal";
 import EmployeeObjectivesModal from "../Modals/EmployeeObjectivesModal";
+import AuthContext from "../AuthContext";
 
 const EmployeesPage = () => {
     const [editFormOpened, setEditFormOpened] = useState(false);
@@ -10,13 +11,15 @@ const EmployeesPage = () => {
     const [employees, setEmployees] = useState([]);
     const [objectiveModalOpened, setObjectiveModalOpened] = useState(false);
 
+    const { user } = useContext(AuthContext);
+
     const handleOpenForm = (id, event) => {
         setEmployeeId(id);
         setEditFormOpened(true);
     }
 
     const handleCloseForm = event => {
-        setEditFormOpened(false);
+        setEditFormOpened(false); 
     }
 
     const handleOpenObjectiveModal = (id, event) => {
