@@ -13,6 +13,17 @@ class ObjectiveDataService {
         return await axios.get(`objectives/employee/${employeeId}`);
     }
 
+    searchMany = async ({ title, completion, minDate, maxDate, employeeId}) => {
+        return await axios.get(
+            `objectives/search?` +
+            `${title ? `title=${title}&` : ''}` +
+            `${completion ? `completion=${completion}&` : ''}` +
+            `${minDate ? `minDate=${minDate}&` : ''}` +
+            `${maxDate ? `maxdate=${maxDate}&` : ''}` +
+            `employeeid=${employeeId}`
+        );
+    }
+
     createOne = async objective => {
         const body = {
             title: objective.title,
