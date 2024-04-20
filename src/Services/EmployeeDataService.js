@@ -9,6 +9,29 @@ class EmployeeDataService {
         return await axios.get(`employees/${id}`);
     }
 
+    searchMany = async ({ 
+        username, 
+        fullname, 
+        minDate, 
+        maxDate, 
+        maxAge, 
+        minAge, 
+        roleId, 
+        specialityId
+    }) => {
+        return await axios.get(
+            `employees/search?` +
+            `${username ? `username=${username}&` : ''}` +
+            `${fullname ? `fullname=${fullname}&` : ''}` +
+            `${minDate ? `mindate=${minDate}&` : ''}` +
+            `${maxDate ? `maxdate=${maxDate}&` : ''}` +
+            `${minAge ? `minage=${minAge}&` : ''}` +
+            `${maxAge ? `maxage=${maxAge}&` : ''}` +
+            `${roleId ? `roleid=${roleId}&` : ''}` +
+            `${specialityId ? `specialityid=${specialityId}` : ''}`
+        );
+    }
+
     createOne = async employee => {
         const body = {
             username: employee.username,

@@ -18,7 +18,7 @@ class ObjectiveDataService {
             `objectives/search?` +
             `${title ? `title=${title}&` : ''}` +
             `${completion ? `completion=${completion}&` : ''}` +
-            `${minDate ? `minDate=${minDate}&` : ''}` +
+            `${minDate ? `mindate=${minDate}&` : ''}` +
             `${maxDate ? `maxdate=${maxDate}&` : ''}` +
             `employeeid=${employeeId}`
         );

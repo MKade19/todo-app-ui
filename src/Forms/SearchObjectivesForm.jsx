@@ -1,14 +1,11 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Swal from "sweetalert2";
-import AuthContext from "../AuthContext";
 
 const SearchObjectivesForm = ({ employeeId, handleClose, fetchSearchData }) => {
     const [title, setTitle] = useState('');
     const [completion, setCompletion] = useState('');
     const [minDate, setMinDate] = useState('');
     const [maxDate, setMaxDate] = useState('');
-
-    const { user } = useContext(AuthContext);
 
     const changeTitle = event => {
         setTitle(event.target.value);
