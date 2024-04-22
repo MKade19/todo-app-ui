@@ -46,6 +46,14 @@ class EmployeeDataService {
         return await axios.post('employees', body);
     }
 
+    uploadImage = async imageData => {
+        try {
+            return await axios.post('employees/image-upload', imageData);
+        } catch (error) {
+            return error.response;
+        }
+    }
+
     updateOne = async employee => {
         const body = {
             id: employee.id,

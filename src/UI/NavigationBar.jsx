@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { NavLink, Nav, Navbar, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import AuthContext from '../AuthContext'
+import AvatarImage from './AvatarImage'
 
 const NavigationBar = () => {
     const { logoutUser, user } = useContext(AuthContext);
@@ -32,8 +33,17 @@ const NavigationBar = () => {
                             </LinkContainer>
                         }
                     </Nav>
-                    <Navbar>{ !user() ? '' : user().username + '-' + user().role.name }&nbsp;&nbsp;&nbsp;
-                    { !user ? null : <NavLink onClick={handleLogout}>Log out</NavLink> }</Navbar>
+                    <Navbar>
+                        <LinkContainer to={'/profile'}>
+                            <NavLink className="mx-3 d-flex align-items-center">
+                                <AvatarImage imageName={ user().imagename }
+                                    width={30}
+                                    height={30}/>
+                                { !user() ? '' : user().username + ', role - ' + user().role.name }
+                            </NavLink>
+                        </LinkContainer>
+                        { !user ? null : <NavLink onClick={handleLogout}>Log out</NavLink> }
+                    </Navbar>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

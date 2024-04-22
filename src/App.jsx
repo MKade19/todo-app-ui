@@ -9,6 +9,7 @@ import EmployeesPage from './Pages/EmployeesPage';
 import SpecialitiesPage from './Pages/SpecialitiesPage';
 import ChangePasswordPage from './Pages/ChangePasswordPage';
 import PermissionTypes from './Constants/PermissionTypes';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
     const { user } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
             <Routes>
                 <Route path="/" element={ user() ? <Layout/> : <Navigate to={'/auth/sign-in'}/> }>
                     <Route index element={ <HomePage/> }/>
+                    <Route path='profile' element={ <ProfilePage/> }/>
                     { renderProtectedRoutes() }
                     <Route path='*' element={ <Navigate to={'/'}/> }/>
                 </Route>
